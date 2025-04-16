@@ -2,6 +2,10 @@
 #include <iostream>
 
 int main() {
+    //
+    // TEST CODE (ONLY SHOWS THE WINDOW)
+    //
+
     sf::RenderWindow window(sf::VideoMode(512, 512), "Snake Game", sf::Style::Close | sf::Style::Resize);
 
     while (window.isOpen()) {
