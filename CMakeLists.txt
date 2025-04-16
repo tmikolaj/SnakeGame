@@ -9,7 +9,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(SFML COMPONENTS system window graphics REQUIRED)
 
 # Add your source files
-add_executable(snakeGame src/main.cpp)
+add_executable(snakeGame src/main.cpp
+        include/State.hpp
+        src/StateManager.cpp
+        include/StateManager.h)
 
 # Link SFML libraries
 target_link_libraries(snakeGame
