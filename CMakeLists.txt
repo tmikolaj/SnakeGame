@@ -12,7 +12,9 @@ find_package(SFML COMPONENTS system window graphics REQUIRED)
 add_executable(snakeGame src/main.cpp
         include/State.hpp
         src/StateManager.cpp
-        include/StateManager.h)
+        include/StateManager.h
+        src/Game.cpp
+        include/Game.h)
 
 # Link SFML libraries
 target_link_libraries(snakeGame
