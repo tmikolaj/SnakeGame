@@ -1,9 +1,10 @@
-#include <SFML/Graphics.hpp>
 #include <iostream>
+#include "../include/Game.h"
 
 int main() {
-    // Test code removed
-
+    // TEST CODE MOVED TO GAME.H AND GAME.CPP
+    Game game;
+    game.run();
     return 0;
 }
 
