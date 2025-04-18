@@ -40,10 +40,59 @@ void MainMenu::processInput() {
         if (evnt.type == sf::Event::Closed) {
             context->window->close();
         }
+        else if (evnt.type == sf::Event::KeyPressed) {
+            switch (evnt.key.code) {
+                case sf::Keyboard::Up:
+                    if (!isPlayButtonSelected) {
+                        isPlayButtonSelected = true;
+                        isExitButtonSelected = false;
+                    }
+                    break;
+                case sf::Keyboard::Down:
+                    if (!isExitButtonSelected) {
+                        isExitButtonSelected = true;
+                        isPlayButtonSelected = false;
+                    }
+                    break;
+                case sf::Keyboard::Return:
+                    isPlayButtonPressed = false;
+                    isExitButtonPressed = false;
+
+                    if (isPlayButtonSelected) {
+                        isPlayButtonSelected = true;
+                    } else {
+                        isExitButtonPressed = true;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
 void MainMenu::update(sf::Time deltaTime) {
+    if (isPlayButtonSelected) {
+        // reset exit button hover style
+        exitButton.setFillColor(sf::Color::White);
+        exitButton.setCharacterSize(20);
 
+        playButton.setFillColor(sf::Color::Yellow);
+        playButton.setCharacterSize(23);
+    } else {
+        // reset play button hover style
+        playButton.setFillColor(sf::Color::White);
+        playButton.setCharacterSize(20);
+
+        exitButton.setFillColor(sf::Color::Yellow);
+        exitButton.setCharacterSize(23);
+    }
+
+    if (isPlayButtonPressed) {
+        // Start game
+        // Will be implemented soon
+    } else if (isExitButtonPressed) {
+        context->window->close();
+    }
 }
 void MainMenu::draw() {
     context->window->clear();
