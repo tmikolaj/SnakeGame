@@ -8,13 +8,21 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Find SFML installed on the system (make sure SFML and SFML-devel are installed)
 find_package(SFML COMPONENTS system window graphics REQUIRED)
 
+# Copy assets to the build directory
+file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
+
 # Add your source files
 add_executable(snakeGame src/main.cpp
         include/State.hpp
         src/StateManager.cpp
         include/StateManager.h
         src/Game.cpp
-        include/Game.h)
+        include/Game.h
+        src/MainMenu.cpp
+        include/MainMenu.h
+        include/AssetManager.h
+        src/AssetManager.cpp
+)
 
 # Link SFML libraries
 target_link_libraries(snakeGame
