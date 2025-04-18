@@ -6,7 +6,7 @@
 #include "../include/MainMenu.h"
 
 Game::Game() : context(std::make_shared<Context>()) {
-    context->window->create(sf::VideoMode(200,200), "SFML works", sf::Style::Close);
+    context->window->create(sf::VideoMode(640,360), "sfml snake game", sf::Style::Close);
     context->states->add(std::make_unique<MainMenu>(context));
 }
 
