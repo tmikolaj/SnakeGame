@@ -4,6 +4,7 @@
 
 #include <SFML/Window/Event.hpp>
 #include "../include/MainMenu.h"
+#include "../include/GamePlay.h"
 
 MainMenu::MainMenu(std::shared_ptr<Context>& context) : context(context), isPlayButtonSelected(true), isPlayButtonPressed(false), isExitButtonSelected(false), isExitButtonPressed(false) {
 
@@ -64,7 +65,7 @@ void MainMenu::processInput() {
                     isExitButtonPressed = false;
 
                     if (isPlayButtonSelected) {
-                        isPlayButtonSelected = true;
+                        isPlayButtonPressed = true;
                     } else {
                         isExitButtonPressed = true;
                     }
@@ -93,8 +94,7 @@ void MainMenu::update(sf::Time deltaTime) {
     }
 
     if (isPlayButtonPressed) {
-        // Start game
-        // Will be implemented soon
+        context->states->add(std::make_unique<GamePlay>(context), true);
     } else if (isExitButtonPressed) {
         context->window->close();
     }
