@@ -17,6 +17,8 @@ private:
     sf::Text playButton;
     sf::Text exitButton;
 
+    sf::Color background;
+
     bool isPlayButtonSelected;
     bool isPlayButtonPressed;
 

@@ -14,6 +14,11 @@ MainMenu::~MainMenu() {
 void MainMenu::init() {
     context->assets->addFont(MAIN_FONT, "assets/Roboto-Italic-VariableFont_wdth,wght.ttf");
 
+    // Background color init
+    background.r = 11;
+    background.g = 133;
+    background.b = 17;
+
     // Title init
     gameTitle.setFont(context->assets->getFont(MAIN_FONT));
     gameTitle.setString("Snake Game");
@@ -95,7 +100,7 @@ void MainMenu::update(sf::Time deltaTime) {
     }
 }
 void MainMenu::draw() {
-    context->window->clear();
+    context->window->clear(background);
     context->window->draw(gameTitle);
     context->window->draw(playButton);
     context->window->draw(exitButton);
