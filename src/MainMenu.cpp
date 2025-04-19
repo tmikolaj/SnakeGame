@@ -81,14 +81,14 @@ void MainMenu::update(sf::Time deltaTime) {
         exitButton.setFillColor(sf::Color::White);
         exitButton.setCharacterSize(20);
 
-        playButton.setFillColor(sf::Color::Yellow);
+        playButton.setFillColor(sf::Color::Black);
         playButton.setCharacterSize(23);
     } else {
         // reset play button hover style
         playButton.setFillColor(sf::Color::White);
         playButton.setCharacterSize(20);
 
-        exitButton.setFillColor(sf::Color::Yellow);
+        exitButton.setFillColor(sf::Color::Black);
         exitButton.setCharacterSize(23);
     }
 
