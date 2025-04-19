@@ -6,7 +6,7 @@ A classic Snake game built using the SFML in C++.
 
 ## 📌 Features (Planned)
 
-- [ ] Main Menu (Working on it today)
+- [X] Main Menu (the background will be changed)
 - [ ] Pause Menu
 - [ ] Game Over screen
 - [ ] Score system
