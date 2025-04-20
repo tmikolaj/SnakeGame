@@ -14,7 +14,14 @@ GamePlay::~GamePlay() {
 
 }
 void GamePlay::init() {
+    // Grid position to pixels
+    sf::Vector2f foodPos(foodGridPos.x * TILE_SIZE, foodGridPos.y * TILE_SIZE);
 
+    food.setSize(sf::Vector2f(TILE_SIZE, TILE_SIZE));
+    food.setPosition(foodPos);
+    food.setFillColor(sf::Color(200, 50, 50));
+    food.setOutlineThickness(1);
+    food.setOutlineColor(sf::Color::Black);
 }
 void GamePlay::processInput() {
     sf::Event evnt;

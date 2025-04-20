@@ -19,6 +19,9 @@ private:
     sf::Color lightGreen;
     sf::Color darkGreen;
 
+    // Food
+    sf::RectangleShape food;
+    sf::Vector2i foodGridPos;
     // Snake will be added here
 public:
     GamePlay(std::shared_ptr<Context>& context);
