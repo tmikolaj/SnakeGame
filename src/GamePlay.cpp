@@ -2,7 +2,7 @@
 // Created by mikolaj on 4/19/25.
 //
 
-#include <iostream>
+#include <SFML/Window/Event.hpp>
 #include "../include/GamePlay.h"
 
 GamePlay::GamePlay(std::shared_ptr<Context>& context) : context(context) {
@@ -17,7 +17,12 @@ void GamePlay::init() {
 
 }
 void GamePlay::processInput() {
-
+    sf::Event evnt;
+    while (context->window->pollEvent(evnt)) {
+        if (evnt.type == sf::Event::Closed) {
+            context->window->close();
+        }
+    }
 }
 void GamePlay::update(sf::Time deltaTime) {
 
