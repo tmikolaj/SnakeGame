@@ -10,13 +10,13 @@ A classic Snake game built using the SFML in C++.
 - [ ] Pause Menu
 - [ ] Game Over screen
 - [ ] Score system
-- [ ] Snake movement
+- [X] Snake movement
 - [ ] Fruit spawning and eating
 - [ ] Snake growth
 - [ ] Collision detection
 - [ ] High score saving (not sure for now)
 - [ ] Sound effects and music (not sure for now)
-- [ ] Clean state management system
+- [X] Clean state management system
 
 ---
 
@@ -38,7 +38,7 @@ A classic Snake game built using the SFML in C++.
 
 ## 💬 To Do (Soon)
 
-- [ ] Setup the snake movement logic
+- [X] Setup the snake movement logic
 - [X] Link main menu to actual game state
 - [ ] Add basic fruit logic
 
