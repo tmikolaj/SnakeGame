@@ -39,7 +39,7 @@ A classic Snake game built using the SFML in C++.
 ## 💬 To Do (Soon)
 
 - [ ] Setup the snake movement logic
-- [ ] Link main menu to actual game state
+- [X] Link main menu to actual game state
 - [ ] Add basic fruit logic
 
 ---
