@@ -9,6 +9,7 @@
 #include <memory>
 #include "Game.h"
 #include "State.hpp"
+#include "Snake.h"
 
 class GamePlay : public Engine::State {
 private:
@@ -22,7 +23,11 @@ private:
     // Food
     sf::RectangleShape food;
     sf::Vector2i foodGridPos;
-    // Snake will be added here
+
+    // Snake
+    Snake snake;
+    sf::Vector2f snakeDirection;
+    sf::Time elapsedTime;
 public:
     GamePlay(std::shared_ptr<Context>& context);
     ~GamePlay();

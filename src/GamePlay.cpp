@@ -5,7 +5,7 @@
 #include <SFML/Window/Event.hpp>
 #include "../include/GamePlay.h"
 
-GamePlay::GamePlay(std::shared_ptr<Context>& context) : context(context) {
+GamePlay::GamePlay(std::shared_ptr<Context>& context) : context(context), snakeDirection({20, 0}), elapsedTime(sf::Time::Zero) {
     lightGreen.r = 170;  darkGreen.r = 162;
     lightGreen.g = 215;  darkGreen.g = 209;
     lightGreen.b = 81;   darkGreen.b = 73;
@@ -22,17 +22,38 @@ void GamePlay::init() {
     food.setFillColor(sf::Color(200, 50, 50));
     food.setOutlineThickness(1);
     food.setOutlineColor(sf::Color::Black);
+
+    snake.init();
 }
 void GamePlay::processInput() {
     sf::Event evnt;
     while (context->window->pollEvent(evnt)) {
         if (evnt.type == sf::Event::Closed) {
             context->window->close();
+        } else if (evnt.type == sf::Event::KeyPressed) {
+            if (evnt.key.code == sf::Keyboard::Up || evnt.key.code == sf::Keyboard::W) {
+                snakeDirection = {0, -20};
+            }
+            else if (evnt.key.code == sf::Keyboard::Down || evnt.key.code == sf::Keyboard::S) {
+                snakeDirection = {0, 20};
+            }
+            else if (evnt.key.code == sf::Keyboard::Left || evnt.key.code == sf::Keyboard::A) {
+                snakeDirection = {-20, 0};
+            }
+            else if (evnt.key.code == sf::Keyboard::Right || evnt.key.code == sf::Keyboard::D) {
+                snakeDirection = {20, 0};
+            }
+
         }
     }
 }
 void GamePlay::update(sf::Time deltaTime) {
+    elapsedTime += deltaTime;
 
+    if (elapsedTime.asSeconds() >= .1) {
+        snake.move(snakeDirection);
+        elapsedTime = sf::Time::Zero;
+    }
 }
 void GamePlay::draw() {
     context->window->clear();
@@ -51,6 +72,7 @@ void GamePlay::draw() {
             context->window->draw(tile);
         }
     }
+    context->window->draw(snake);
 
     context->window->display();
 }
