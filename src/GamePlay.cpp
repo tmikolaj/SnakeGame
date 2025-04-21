@@ -51,7 +51,20 @@ void GamePlay::update(sf::Time deltaTime) {
     elapsedTime += deltaTime;
 
     if (elapsedTime.asSeconds() >= .1) {
-        snake.move(snakeDirection);
+        sf::Vector2f headPos = snake.getHeadPos();
+        sf::Vector2u windowSize = context->window->getSize();
+
+        if (headPos.x < 0 || headPos.y < 0 || headPos.x >= windowSize.x || headPos.y >= windowSize.y) {
+            // Game over screen not yet implemented
+            exit(1);
+        }
+
+        if (snake.isOn(food)) {
+            snake.grow(snakeDirection);
+        } else {
+            snake.move(snakeDirection);
+        }
+
         elapsedTime = sf::Time::Zero;
     }
 }
