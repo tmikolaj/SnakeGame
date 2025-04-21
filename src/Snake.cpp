@@ -1,7 +1,3 @@
-//
-// Created by mikolaj on 4/20/25.
-//
-
 #include "../include/Snake.h"
 
 Snake::Snake() : body(std::list<sf::RectangleShape>(4)) {

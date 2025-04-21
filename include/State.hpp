@@ -1,7 +1,3 @@
-//
-// Created by mikolaj on 4/16/25.
-//
-
 #ifndef STATE_H
 #define STATE_H
 

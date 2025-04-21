@@ -1,7 +1,3 @@
-//
-// Created by mikolaj on 4/17/25.
-//
-
 #include <SFML/Window/Event.hpp>
 #include "../include/MainMenu.h"
 #include "../include/GamePlay.h"

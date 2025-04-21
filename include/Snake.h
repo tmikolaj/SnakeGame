@@ -1,7 +1,3 @@
-//
-// Created by mikolaj on 4/20/25.
-//
-
 #ifndef SNAKE_H
 #define SNAKE_H
 

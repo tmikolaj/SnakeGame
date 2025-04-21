@@ -1,7 +1,3 @@
-//
-// Created by mikolaj on 4/16/25.
-//
-
 #include "../include/StateManager.h"
 
 Engine::StateManager::StateManager() : m_add(false), m_replace(false), m_remove(false) {

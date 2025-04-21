@@ -1,7 +1,3 @@
-//
-// Created by mikolaj on 4/17/25.
-//
-
 #include "../include/Game.h"
 #include "../include/MainMenu.h"
 
