@@ -1,7 +1,5 @@
-//
-// Created by mikolaj on 4/19/25.
-//
-
+#include <ctime>
+#include <cstdlib>
 #include <SFML/Window/Event.hpp>
 #include "../include/GamePlay.h"
 
@@ -14,16 +12,27 @@ GamePlay::~GamePlay() {
 
 }
 void GamePlay::init() {
-    // Grid position to pixels
-    sf::Vector2f foodPos(foodGridPos.x * TILE_SIZE, foodGridPos.y * TILE_SIZE);
-
-    food.setSize(sf::Vector2f(TILE_SIZE, TILE_SIZE));
-    food.setPosition(foodPos);
-    food.setFillColor(sf::Color(200, 50, 50));
-    food.setOutlineThickness(1);
-    food.setOutlineColor(sf::Color::Black);
+    // random seed for food position
+    srand(time(nullptr));
 
     snake.init();
+
+    const int rows = context->window->getSize().y / TILE_SIZE;
+    const int cols = context->window->getSize().x / TILE_SIZE;
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            sf::Vector2f pos(j * 20, i * 20);
+
+            // Snake init positions
+            if (pos.y == 140 && (pos.x >= 100 && pos.x <= 160)) {
+                continue;
+            }
+
+            freePos.push_back(pos);
+        }
+    }
+    generateFood();
 }
 void GamePlay::processInput() {
     sf::Event evnt;
@@ -70,6 +79,7 @@ void GamePlay::update(sf::Time deltaTime) {
 
         if (snake.isOn(food)) {
             snake.grow(snakeDirection);
+            generateFood();
         } else {
             snake.move(snakeDirection);
         }
@@ -95,7 +105,7 @@ void GamePlay::draw() {
         }
     }
     context->window->draw(snake);
-
+    context->window->draw(food);
     context->window->display();
 }
 void GamePlay::pause() {
@@ -103,4 +113,19 @@ void GamePlay::pause() {
 }
 void GamePlay::start() {
 
+}
+void GamePlay::generateFood() {
+    int random = rand() % freePos.size();
+
+    // Top left of the tile
+    sf::Vector2f basePos = freePos[random];
+
+    // For centering food inside the tile
+    float offset = (TILE_SIZE - food.getSize().x) / 2.f;
+
+    food.setSize(sf::Vector2f(TILE_SIZE - 5, TILE_SIZE - 5));
+    food.setPosition(basePos.x + offset, basePos.y + offset);
+    food.setFillColor(sf::Color(200, 50, 50));
+    food.setOutlineThickness(1);
+    food.setOutlineColor(sf::Color::Black);
 }

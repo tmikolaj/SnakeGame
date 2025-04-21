@@ -1,7 +1,3 @@
-//
-// Created by mikolaj on 4/19/25.
-//
-
 #ifndef GAMEPLAY_H
 #define GAMEPLAY_H
 
@@ -23,6 +19,9 @@ private:
     // Food
     sf::RectangleShape food;
     sf::Vector2i foodGridPos;
+    // Will store the free positions (little optimization for
+    // generating the food)
+    std::vector<sf::Vector2f> freePos;
 
     // Snake
     Snake snake;
@@ -39,6 +38,8 @@ public:
 
     void pause() override;
     void start() override;
+
+    void generateFood();
 };
 
 
