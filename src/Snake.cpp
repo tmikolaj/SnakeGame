@@ -33,13 +33,22 @@ void Snake::move(const sf::Vector2f& direction) {
     }
 }
 bool Snake::isOn(const sf::RectangleShape& other) const {
-    return false;
+    return head->getGlobalBounds().intersects(other.getGlobalBounds());
 }
 void Snake::grow(const sf::Vector2f& direction) {
+    sf::RectangleShape newPiece;
 
+    newPiece.setFillColor(sf::Color(31, 103, 237));
+    newPiece.setSize(sf::Vector2f(20, 20));
+    newPiece.setPosition(head->getPosition() + direction);
+
+    head = body.insert(++head, newPiece);
 }
 void Snake::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     for (auto& piece : body) {
         target.draw(piece);
     }
+}
+sf::Vector2f Snake::getHeadPos() const {
+    return head->getPosition();
 }
