@@ -28,22 +28,31 @@ void GamePlay::init() {
 void GamePlay::processInput() {
     sf::Event evnt;
     while (context->window->pollEvent(evnt)) {
+
         if (evnt.type == sf::Event::Closed) {
             context->window->close();
         } else if (evnt.type == sf::Event::KeyPressed) {
+
+            sf::Vector2f newDirection = snakeDirection;
+
+            // Input check
             if (evnt.key.code == sf::Keyboard::Up || evnt.key.code == sf::Keyboard::W) {
-                snakeDirection = {0, -20};
+                newDirection = {0, -20};
             }
             else if (evnt.key.code == sf::Keyboard::Down || evnt.key.code == sf::Keyboard::S) {
-                snakeDirection = {0, 20};
+                newDirection = {0, 20};
             }
             else if (evnt.key.code == sf::Keyboard::Left || evnt.key.code == sf::Keyboard::A) {
-                snakeDirection = {-20, 0};
+                newDirection = {-20, 0};
             }
             else if (evnt.key.code == sf::Keyboard::Right || evnt.key.code == sf::Keyboard::D) {
-                snakeDirection = {20, 0};
+                newDirection = {20, 0};
             }
 
+            // Prevents snake changing direction by 180 degrees
+            if (std::abs(snakeDirection.x) != std::abs(newDirection.x) || std::abs(snakeDirection.y) != std::abs(newDirection.y)) {
+                snakeDirection = newDirection;
+            }
         }
     }
 }
