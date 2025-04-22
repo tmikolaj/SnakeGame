@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <SFML/Window/Event.hpp>
 #include "../include/GamePlay.h"
+#include "../include/GameOver.h"
 
 GamePlay::GamePlay(std::shared_ptr<Context>& context) : context(context), snakeDirection({20, 0}), elapsedTime(sf::Time::Zero) {
     lightGreen.r = 170;  darkGreen.r = 162;
@@ -73,8 +74,8 @@ void GamePlay::update(sf::Time deltaTime) {
         sf::Vector2u windowSize = context->window->getSize();
 
         if (headPos.x < 0 || headPos.y < 0 || headPos.x >= windowSize.x || headPos.y >= windowSize.y) {
-            // Game over screen not yet implemented
-            exit(1);
+            // Game over screen
+            context->states->add(std::make_unique<GameOver>(context), true);
         }
 
         if (snake.isOn(food)) {
