@@ -26,6 +26,8 @@ add_executable(snakeGame src/main.cpp
         include/GamePlay.h
         src/Snake.cpp
         include/Snake.h
+        src/GameOver.cpp
+        include/GameOver.h
 )
 
 # Link SFML libraries
