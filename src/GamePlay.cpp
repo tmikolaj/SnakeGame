@@ -121,10 +121,10 @@ void GamePlay::generateFood() {
     // Top left of the tile
     sf::Vector2f basePos = freePos[random];
 
+    food.setSize(sf::Vector2f(TILE_SIZE - 5, TILE_SIZE - 5));
     // For centering food inside the tile
     float offset = (TILE_SIZE - food.getSize().x) / 2.f;
 
-    food.setSize(sf::Vector2f(TILE_SIZE - 5, TILE_SIZE - 5));
     food.setPosition(basePos.x + offset, basePos.y + offset);
     food.setFillColor(sf::Color(200, 50, 50));
     food.setOutlineThickness(1);
