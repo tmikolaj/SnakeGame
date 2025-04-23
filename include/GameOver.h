@@ -10,6 +10,9 @@ private:
     std::shared_ptr<Context> context;
     sf::Text gameOverTitle;
 
+    sf::Text gameOverMessage;
+    std::string m_message;
+
     sf::Text retryButton;
     sf::Text exitButton;
 
@@ -21,7 +24,7 @@ private:
     bool isExitButtonSelected;
     bool isExitButtonPressed;
 public:
-    GameOver(std::shared_ptr<Context>& context);
+    GameOver(std::shared_ptr<Context>& context, std::string message);
     ~GameOver();
 
     void init() override;

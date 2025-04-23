@@ -75,10 +75,10 @@ void GamePlay::update(sf::Time deltaTime) {
 
         // Game over checks
         if (snake.isSelfColliding()) {
-            context->states->add(std::make_unique<GameOver>(context), true);
+            context->states->add(std::make_unique<GameOver>(context, "Self collided!"), true);
         } else if (headPos.x < 0 || headPos.y < 0 || headPos.x >= windowSize.x || headPos.y >= windowSize.y) {
             // Game over screen
-            context->states->add(std::make_unique<GameOver>(context), true);
+            context->states->add(std::make_unique<GameOver>(context, "Out of board!"), true);
         }
 
         if (snake.isOn(food)) {

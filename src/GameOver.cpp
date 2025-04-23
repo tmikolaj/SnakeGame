@@ -2,7 +2,7 @@
 #include "../include/GameOver.h"
 #include "../include/GamePlay.h""
 
-GameOver::GameOver(std::shared_ptr<Context>& context) : context(context), isRetryButtonSelected(true), isRetryButtonPressed(false), isExitButtonSelected(false), isExitButtonPressed(false) {
+GameOver::GameOver(std::shared_ptr<Context>& context, std::string message) : context(context), isRetryButtonSelected(true), isRetryButtonPressed(false), isExitButtonSelected(false), isExitButtonPressed(false), m_message(message) {
 
 }
 GameOver::~GameOver() {
@@ -19,6 +19,13 @@ void GameOver::init() {
     gameOverTitle.setString("Game Over!");
     gameOverTitle.setOrigin(gameOverTitle.getLocalBounds().width/2,gameOverTitle.getLocalBounds().height/2);
     gameOverTitle.setPosition(context->window->getSize().x / 2, context->window->getSize().y / 2 - 150);
+
+    // Game over message init
+    gameOverMessage.setFont(context->assets->getFont(MAIN_FONT));
+    gameOverMessage.setString(m_message);
+    gameOverMessage.setCharacterSize(20);
+    gameOverMessage.setOrigin(gameOverMessage.getLocalBounds().width / 2, gameOverMessage.getLocalBounds().height / 2);
+    gameOverMessage.setPosition(context->window->getSize().x / 2, context->window->getSize().y / 2 - 100);
 
     // Buttons
     // Play button
@@ -96,6 +103,7 @@ void GameOver::update(sf::Time deltaTime) {
 void GameOver::draw() {
     context->window->clear(background);
     context->window->draw(gameOverTitle);
+    context->window->draw(gameOverMessage);
     context->window->draw(retryButton);
     context->window->draw(exitButton);
     context->window->display();
