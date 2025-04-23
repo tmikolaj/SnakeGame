@@ -52,7 +52,7 @@ bool Snake::isSelfColliding() const {
     const auto& head = body.front();
 
     for (auto it = ++body.begin(); it != body.end(); ++it) {
-        if (head.getGlobalBounds().intersects(it->getGlobalBounds())) {
+        if (head.getPosition() == it->getPosition()) {
             return true;
         }
     }
