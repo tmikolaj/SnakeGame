@@ -39,7 +39,6 @@ A classic Snake game built using the SFML in C++.
 ## 💬 To Do (Soon)
 
 - Add pause menu
-- Complete the slight optimization for generating the food
 - Add points
 
 ---
