@@ -119,6 +119,33 @@ void GamePlay::start() {
 
 }
 void GamePlay::generateFood() {
+    // Update free positions before generating food
+    freePos.clear();
+
+    const int rows = context->window->getSize().y / TILE_SIZE;
+    const int cols = context->window->getSize().x / TILE_SIZE;
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            sf::Vector2f pos(j * TILE_SIZE, i * TILE_SIZE);
+
+            bool isOccupied = false;
+            for (const auto& piece : snake.getBody()) {
+                if (piece.getPosition() == pos) {
+                    isOccupied = true;
+                    break;
+                }
+            }
+
+            if (!isOccupied) {
+                freePos.push_back(pos);
+            }
+        }
+    }
+    if (freePos.empty()) {
+        context->states->add(std::make_unique<GameOver>(context, "You won! Congratulations!"), true);
+    }
+    // Random pos for food
     int random = rand() % freePos.size();
 
     // Top left of the tile
