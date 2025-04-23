@@ -40,5 +40,6 @@ A classic Snake game built using the SFML in C++.
 
 - Add pause menu
 - Add points
+- End screen (currently called GameOver) needs to be refactored
 
 ---
