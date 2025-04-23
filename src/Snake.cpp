@@ -48,3 +48,13 @@ void Snake::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 sf::Vector2f Snake::getHeadPos() const {
     return head->getPosition();
 }
+bool Snake::isSelfColliding() const {
+    const auto& head = body.front();
+
+    for (auto it = ++body.begin(); it != body.end(); ++it) {
+        if (head.getGlobalBounds().intersects(it->getGlobalBounds())) {
+            return true;
+        }
+    }
+    return false;
+}

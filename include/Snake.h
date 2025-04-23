@@ -21,6 +21,7 @@ public:
     bool isOn(const sf::RectangleShape& other) const;
     void grow(const sf::Vector2f& direction);
     sf::Vector2f getHeadPos() const;
+    bool isSelfColliding() const;
 
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };

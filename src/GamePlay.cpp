@@ -73,7 +73,10 @@ void GamePlay::update(sf::Time deltaTime) {
         sf::Vector2f headPos = snake.getHeadPos();
         sf::Vector2u windowSize = context->window->getSize();
 
-        if (headPos.x < 0 || headPos.y < 0 || headPos.x >= windowSize.x || headPos.y >= windowSize.y) {
+        // Game over checks
+        if (snake.isSelfColliding()) {
+            context->states->add(std::make_unique<GameOver>(context), true);
+        } else if (headPos.x < 0 || headPos.y < 0 || headPos.x >= windowSize.x || headPos.y >= windowSize.y) {
             // Game over screen
             context->states->add(std::make_unique<GameOver>(context), true);
         }
