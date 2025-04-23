@@ -22,6 +22,7 @@ public:
     void grow(const sf::Vector2f& direction);
     sf::Vector2f getHeadPos() const;
     bool isSelfColliding() const;
+    std::list<sf::RectangleShape>& getBody();
 
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };

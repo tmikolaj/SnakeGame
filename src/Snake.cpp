@@ -58,3 +58,6 @@ bool Snake::isSelfColliding() const {
     }
     return false;
 }
+std::list<sf::RectangleShape>& Snake::getBody() {
+    return body;
+}
