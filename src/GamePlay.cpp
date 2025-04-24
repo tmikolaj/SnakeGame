@@ -2,6 +2,7 @@
 #include <SFML/Window/Event.hpp>
 #include "../include/GamePlay.h"
 #include "../include/EndScreen.h"
+#include "../include/Pause.h"
 
 GamePlay::GamePlay(std::shared_ptr<Context>& context) : context(context), snakeDirection({20, 0}), elapsedTime(sf::Time::Zero) {
     lightGreen.r = 170;  darkGreen.r = 162;
@@ -39,6 +40,11 @@ void GamePlay::processInput() {
             context->window->close();
         } else if (evnt.type == sf::Event::KeyPressed) {
 
+            // Pause check
+            if (evnt.key.code == sf::Keyboard::Escape) {
+                context->states->add(std::make_unique<Pause>(context), false);
+            }
+
             sf::Vector2f newDirection = snakeDirection;
 
             // Input check
@@ -63,6 +69,8 @@ void GamePlay::processInput() {
     }
 }
 void GamePlay::update(sf::Time deltaTime) {
+
+
     elapsedTime += deltaTime;
 
     if (elapsedTime.asSeconds() >= .1) {
@@ -140,6 +148,7 @@ void GamePlay::generateFood() {
     }
     if (freePos.empty()) {
         context->states->add(std::make_unique<EndScreen>(context, "You won!","Congratulations!"), true);
+        return;
     }
     // Random pos for food
     int random = rand() % freePos.size();
