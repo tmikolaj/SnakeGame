@@ -28,6 +28,8 @@ add_executable(snakeGame src/main.cpp
         include/Snake.h
         src/EndScreen.cpp
         include/EndScreen.h
+        src/Pause.cpp
+        include/Pause.h
 )
 
 # Link SFML libraries
