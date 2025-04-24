@@ -4,7 +4,7 @@
 #include "../include/EndScreen.h"
 #include "../include/Pause.h"
 
-GamePlay::GamePlay(std::shared_ptr<Context>& context) : context(context), snakeDirection({20, 0}), elapsedTime(sf::Time::Zero) {
+GamePlay::GamePlay(std::shared_ptr<Context>& context) : context(context), snakeDirection({20, 0}), elapsedTime(sf::Time::Zero), score(0) {
     lightGreen.r = 170;  darkGreen.r = 162;
     lightGreen.g = 215;  darkGreen.g = 209;
     lightGreen.b = 81;   darkGreen.b = 73;
@@ -31,6 +31,14 @@ void GamePlay::init() {
         }
     }
     generateFood();
+
+    pointsText.setFont(context->assets->getFont(MAIN_FONT));
+    pointsText.setCharacterSize(32);
+    pointsText.setString("Score: "+std::to_string(score));
+    pointsText.setColor(sf::Color(255, 255, 255, 150));
+    sf::FloatRect textRect = pointsText.getLocalBounds();
+    pointsText.setOrigin(textRect.width / 2, textRect.height / 2);
+    pointsText.setPosition(context->window->getSize().x / 2, 30);
 }
 void GamePlay::processInput() {
     sf::Event evnt;
@@ -69,8 +77,6 @@ void GamePlay::processInput() {
     }
 }
 void GamePlay::update(sf::Time deltaTime) {
-
-
     elapsedTime += deltaTime;
 
     if (elapsedTime.asSeconds() >= .1) {
@@ -88,6 +94,8 @@ void GamePlay::update(sf::Time deltaTime) {
         if (snake.isOn(food)) {
             snake.grow(snakeDirection);
             generateFood();
+            ++score;
+            pointsText.setString("Score: "+std::to_string(score));
         } else {
             snake.move(snakeDirection);
         }
@@ -114,12 +122,13 @@ void GamePlay::draw() {
     }
     context->window->draw(snake);
     context->window->draw(food);
+    context->window->draw(pointsText);
     context->window->display();
 }
-void GamePlay::pause() {
+void GamePlay::start() {
 
 }
-void GamePlay::start() {
+void GamePlay::pause() {
 
 }
 void GamePlay::generateFood() {

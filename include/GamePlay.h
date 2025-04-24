@@ -2,6 +2,7 @@
 #define GAMEPLAY_H
 
 #include <SFML/Graphics/RectangleShape.hpp>
+#include <SFML/Graphics/Text.hpp>
 #include <memory>
 #include "Game.h"
 #include "State.hpp"
@@ -27,6 +28,10 @@ private:
     Snake snake;
     sf::Vector2f snakeDirection;
     sf::Time elapsedTime;
+
+    // Points
+    sf::Text pointsText;
+    int score;
 public:
     GamePlay(std::shared_ptr<Context>& context);
     ~GamePlay();
