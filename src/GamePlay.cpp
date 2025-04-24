@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <SFML/Window/Event.hpp>
 #include "../include/GamePlay.h"
-#include "../include/GameOver.h"
+#include "../include/EndScreen.h"
 
 GamePlay::GamePlay(std::shared_ptr<Context>& context) : context(context), snakeDirection({20, 0}), elapsedTime(sf::Time::Zero) {
     lightGreen.r = 170;  darkGreen.r = 162;
@@ -75,10 +75,10 @@ void GamePlay::update(sf::Time deltaTime) {
 
         // Game over checks
         if (snake.isSelfColliding()) {
-            context->states->add(std::make_unique<GameOver>(context, "Self collided!"), true);
+            context->states->add(std::make_unique<EndScreen>(context, "Game Over!", "Self collided!"), true);
         } else if (headPos.x < 0 || headPos.y < 0 || headPos.x >= windowSize.x || headPos.y >= windowSize.y) {
             // Game over screen
-            context->states->add(std::make_unique<GameOver>(context, "Out of board!"), true);
+            context->states->add(std::make_unique<EndScreen>(context, "Game Over!","Out of board!"), true);
         }
 
         if (snake.isOn(food)) {
@@ -143,7 +143,7 @@ void GamePlay::generateFood() {
         }
     }
     if (freePos.empty()) {
-        context->states->add(std::make_unique<GameOver>(context, "You won! Congratulations!"), true);
+        context->states->add(std::make_unique<EndScreen>(context, "You won!","Congratulations!"), true);
     }
     // Random pos for food
     int random = rand() % freePos.size();
