@@ -5,10 +5,11 @@
 #include "State.hpp"
 #include "Game.h"
 
-class GameOver : public Engine::State {
+class EndScreen : public Engine::State {
 private:
     std::shared_ptr<Context> context;
     sf::Text gameOverTitle;
+    std::string m_title;
 
     sf::Text gameOverMessage;
     std::string m_message;
@@ -24,8 +25,8 @@ private:
     bool isExitButtonSelected;
     bool isExitButtonPressed;
 public:
-    GameOver(std::shared_ptr<Context>& context, std::string message);
-    ~GameOver();
+    EndScreen(std::shared_ptr<Context>& context, std::string title, std::string message);
+    ~EndScreen();
 
     void init() override;
     void processInput() override;

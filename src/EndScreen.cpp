@@ -1,14 +1,14 @@
 #include <SFML/Window/Event.hpp>
-#include "../include/GameOver.h"
+#include "../include/EndScreen.h"
 #include "../include/GamePlay.h""
 
-GameOver::GameOver(std::shared_ptr<Context>& context, std::string message) : context(context), isRetryButtonSelected(true), isRetryButtonPressed(false), isExitButtonSelected(false), isExitButtonPressed(false), m_message(message) {
+EndScreen::EndScreen(std::shared_ptr<Context>& context, std::string title, std::string message) : context(context), isRetryButtonSelected(true), isRetryButtonPressed(false), isExitButtonSelected(false), isExitButtonPressed(false), m_title(title), m_message(message) {
 
 }
-GameOver::~GameOver() {
+EndScreen::~EndScreen() {
 
 }
-void GameOver::init() {
+void EndScreen::init() {
     // Background color init
     background.r = 32;
     background.g = 99;
@@ -16,7 +16,7 @@ void GameOver::init() {
 
     // Title init
     gameOverTitle.setFont(context->assets->getFont(MAIN_FONT));
-    gameOverTitle.setString("Game Over!");
+    gameOverTitle.setString(m_title);
     gameOverTitle.setOrigin(gameOverTitle.getLocalBounds().width/2,gameOverTitle.getLocalBounds().height/2);
     gameOverTitle.setPosition(context->window->getSize().x / 2, context->window->getSize().y / 2 - 150);
 
@@ -41,7 +41,7 @@ void GameOver::init() {
     exitButton.setPosition(context->window->getSize().x / 2, context->window->getSize().y / 2 + 25);
     exitButton.setCharacterSize(20);
 }
-void GameOver::processInput() {
+void EndScreen::processInput() {
     sf::Event evnt;
     while (context->window->pollEvent(evnt)) {
         if (evnt.type == sf::Event::Closed) {
@@ -77,7 +77,7 @@ void GameOver::processInput() {
         }
     }
 }
-void GameOver::update(sf::Time deltaTime) {
+void EndScreen::update(sf::Time deltaTime) {
     if (isRetryButtonSelected) {
         // reset exit button hover style
         exitButton.setFillColor(sf::Color::White);
@@ -100,7 +100,7 @@ void GameOver::update(sf::Time deltaTime) {
         context->window->close();
     }
 }
-void GameOver::draw() {
+void EndScreen::draw() {
     context->window->clear(background);
     context->window->draw(gameOverTitle);
     context->window->draw(gameOverMessage);
