@@ -7,7 +7,7 @@ A classic Snake game built using the SFML in C++.
 ## 📌 Features (Planned)
 
 - [X] Main Menu (the background will be changed)
-- [ ] Pause Menu
+- [X] Pause
 - [X] Game Over screen
 - [ ] Score system
 - [X] Snake movement
@@ -38,8 +38,6 @@ A classic Snake game built using the SFML in C++.
 
 ## 💬 To Do (Soon)
 
-- Add pause menu
 - Add points
-- End screen (currently called GameOver) needs to be refactored
 
 ---
