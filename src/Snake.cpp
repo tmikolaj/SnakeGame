@@ -49,14 +49,18 @@ sf::Vector2f Snake::getHeadPos() const {
     return head->getPosition();
 }
 bool Snake::isSelfColliding() const {
-    const auto& head = body.front();
+    bool flag = false;
 
-    for (auto it = ++body.begin(); it != body.end(); ++it) {
-        if (head.getPosition() == it->getPosition()) {
-            return true;
+    for (auto piece = body.begin(); piece != body.end(); ++piece) {
+        if (head != piece) {
+            flag = isOn(*piece);
+            if (flag) {
+                break;
+            }
         }
     }
-    return false;
+
+    return flag;
 }
 std::list<sf::RectangleShape>& Snake::getBody() {
     return body;
