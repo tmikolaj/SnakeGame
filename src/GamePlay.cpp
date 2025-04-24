@@ -1,4 +1,3 @@
-#include <ctime>
 #include <cstdlib>
 #include <SFML/Window/Event.hpp>
 #include "../include/GamePlay.h"
@@ -13,9 +12,6 @@ GamePlay::~GamePlay() {
 
 }
 void GamePlay::init() {
-    // random seed for food position
-    srand(time(nullptr));
-
     snake.init();
 
     const int rows = context->window->getSize().y / TILE_SIZE;
