@@ -13,7 +13,7 @@ void Pause::init() {
     title.setFont(context->assets->getFont(MAIN_FONT));
     title.setString("Game Paused!");
     title.setOrigin(title.getLocalBounds().width/2,title.getLocalBounds().height/2);
-    title.setPosition(context->window->getSize().x / 2, context->window->getSize().y / 2 - 150);
+    title.setPosition(context->window->getSize().x / 2, context->window->getSize().y / 2 - 40);
 }
 void Pause::processInput() {
     sf::Event evnt;
