@@ -13,7 +13,7 @@ void Engine::StateManager::add(std::unique_ptr<Engine::State> toAdd, bool replac
     m_replace = replace;
 }
 void Engine::StateManager::popCurrent() {
-    m_add = true;
+    m_remove = true;
 }
 void Engine::StateManager::processState() {
     if (m_remove && (!stateStack.empty())) {
