@@ -8,8 +8,11 @@
 class EndScreen : public Engine::State {
 private:
     std::shared_ptr<Context> context;
-    sf::Text gameOverTitle;
+    sf::Text endScreenTitle;
     std::string m_title;
+
+    sf::Text scoreText;
+    int m_score;
 
     sf::Text gameOverMessage;
     std::string m_message;
@@ -25,7 +28,7 @@ private:
     bool isExitButtonSelected;
     bool isExitButtonPressed;
 public:
-    EndScreen(std::shared_ptr<Context>& context, std::string title, std::string message);
+    EndScreen(std::shared_ptr<Context>& context, std::string title, std::string message, int score);
     ~EndScreen();
 
     void init() override;
