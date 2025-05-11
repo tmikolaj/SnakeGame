@@ -13,6 +13,8 @@ private:
 
     sf::Text scoreText;
     int m_score;
+    sf::Text highScoreText;
+    int m_highScore;
 
     sf::Text gameOverMessage;
     std::string m_message;

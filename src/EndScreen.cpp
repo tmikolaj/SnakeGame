@@ -1,8 +1,27 @@
 #include <SFML/Window/Event.hpp>
+#include <fstream>
+#include <string>
+#include <iostream>
 #include "../include/EndScreen.h"
 #include "../include/GamePlay.h""
 
 EndScreen::EndScreen(std::shared_ptr<Context>& context, std::string title, std::string message, int score) : context(context), isRetryButtonSelected(true), isRetryButtonPressed(false), isExitButtonSelected(false), isExitButtonPressed(false), m_title(title), m_message(message), m_score(score) {
+    std::ifstream file("highscore.txt");
+    std::string line;
+    if (!file) {
+        std::cerr << "File for high score doesn't exist, creating it...\n";
+        std::ofstream createFile("highscore.txt");
+        createFile << 0; // Initial score
+        createFile.close();
+        m_highScore = 0;
+    } else {
+        std::string line;
+        if (getline(file, line)) {
+            m_highScore = std::stoi(line);
+        } else {
+            m_highScore = 0;
+        }
+    }
 
 }
 EndScreen::~EndScreen() {
@@ -29,12 +48,30 @@ void EndScreen::init() {
     gameOverMessage.setOrigin(gameOverMessage.getLocalBounds().width / 2, gameOverMessage.getLocalBounds().height / 2 - 20);
     gameOverMessage.setPosition(context->window->getSize().x / 2, context->window->getSize().y / 2 - 100);
 
+    // Scores
     // Score display init
     scoreText.setFont(context->assets->getFont(MAIN_FONT));
-    scoreText.setString(std::to_string(m_score));
+    scoreText.setString("Score: "+std::to_string(m_score));
     scoreText.setCharacterSize(20);
     scoreText.setOrigin(scoreText.getLocalBounds().width / 2, scoreText.getLocalBounds().height / 2 - 20);
-    scoreText.setPosition(context->window->getSize().x / 2 - 10, context->window->getSize().y / 2 - 70);
+    scoreText.setPosition(context->window->getSize().x / 2 - 60, context->window->getSize().y / 2 - 70);
+    // High score display init
+    // Saving score to file
+    if (m_score > m_highScore) {
+        m_highScore = m_score;
+        std::ofstream file("highscore.txt");
+        if (file.is_open()) {
+            file << m_highScore;
+            file.close();
+        } else {
+            std::cerr << "Unable to open file (for saving)!\n";
+        }
+    }
+    highScoreText.setFont(context->assets->getFont(MAIN_FONT));
+    highScoreText.setString("High score: "+std::to_string(m_highScore));
+    highScoreText.setCharacterSize(20);
+    highScoreText.setOrigin(scoreText.getLocalBounds().width / 2, scoreText.getLocalBounds().height / 2 - 20);
+    highScoreText.setPosition(context->window->getSize().x / 2 + 70, context->window->getSize().y / 2 - 70);
 
     // Buttons
     // Play button
@@ -114,6 +151,7 @@ void EndScreen::draw() {
     context->window->draw(endScreenTitle);
     context->window->draw(gameOverMessage);
     context->window->draw(scoreText);
+    context->window->draw(highScoreText);
     context->window->draw(retryButton);
     context->window->draw(exitButton);
     context->window->display();
