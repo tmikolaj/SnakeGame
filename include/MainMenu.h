@@ -22,7 +22,7 @@ private:
     bool isExitButtonPressed;
 public:
     MainMenu(std::shared_ptr<Context>& context);
-    ~MainMenu();
+    ~MainMenu() = default;
 
     void init() override;
     void processInput() override;

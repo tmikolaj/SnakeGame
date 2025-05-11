@@ -18,7 +18,7 @@ namespace Engine {
         bool m_remove;
     public:
         StateManager();
-        ~StateManager();
+        ~StateManager() = default;
 
         void add(std::unique_ptr<State> toAdd, bool replace = false);
         void popCurrent();

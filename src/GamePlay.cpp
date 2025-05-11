@@ -9,9 +9,6 @@ GamePlay::GamePlay(std::shared_ptr<Context>& context) : context(context), snakeD
     lightGreen.g = 215;  darkGreen.g = 209;
     lightGreen.b = 81;   darkGreen.b = 73;
 }
-GamePlay::~GamePlay() {
-
-}
 void GamePlay::init() {
     snake.init();
 

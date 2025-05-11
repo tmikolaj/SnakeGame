@@ -34,7 +34,7 @@ private:
     int score;
 public:
     GamePlay(std::shared_ptr<Context>& context);
-    ~GamePlay();
+    ~GamePlay() = default;
 
     void init() override;
     void processInput() override;

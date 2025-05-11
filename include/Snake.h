@@ -14,7 +14,7 @@ private:
     std::list<sf::RectangleShape>::iterator tail;
 public:
     Snake();
-    ~Snake();
+    ~Snake() = default;
 
     void init();
     void move(const sf::Vector2f& direction);

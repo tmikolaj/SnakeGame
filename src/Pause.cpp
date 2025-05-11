@@ -5,9 +5,6 @@
 Pause::Pause(std::shared_ptr<Context>& context) : context(context) {
 
 }
-Pause::~Pause() {
-
-}
 void Pause::init() {
     // Title init
     title.setFont(context->assets->getFont(MAIN_FONT));

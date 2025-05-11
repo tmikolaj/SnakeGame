@@ -8,8 +8,8 @@ namespace Engine {
 
     class State {
     public:
-        State(){};
-        virtual ~State(){};
+        State() = default;
+        virtual ~State() = default;
 
         virtual void init() = 0;
         virtual void processInput() = 0;

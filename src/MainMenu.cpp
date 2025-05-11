@@ -5,9 +5,6 @@
 MainMenu::MainMenu(std::shared_ptr<Context>& context) : context(context), isPlayButtonSelected(true), isPlayButtonPressed(false), isExitButtonSelected(false), isExitButtonPressed(false) {
 
 }
-MainMenu::~MainMenu() {
-
-}
 void MainMenu::init() {
     context->assets->addFont(MAIN_FONT, "assets/Roboto-Italic-VariableFont_wdth,wght.ttf");
 

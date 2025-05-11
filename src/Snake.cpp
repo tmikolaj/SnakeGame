@@ -4,9 +4,6 @@ Snake::Snake() : body(std::list<sf::RectangleShape>(4)) {
     head = --body.end();
     tail = body.begin();
 }
-Snake::~Snake() {
-
-}
 void Snake::init() {
     // TILE_SIZE is set to 20
     float x = 5 * 20;

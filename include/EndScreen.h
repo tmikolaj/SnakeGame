@@ -31,7 +31,7 @@ private:
     bool isExitButtonPressed;
 public:
     EndScreen(std::shared_ptr<Context>& context, std::string title, std::string message, int score);
-    ~EndScreen();
+    ~EndScreen() = default;
 
     void init() override;
     void processInput() override;

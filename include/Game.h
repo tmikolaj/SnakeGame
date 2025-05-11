@@ -28,7 +28,7 @@ private:
     const sf::Time TIME_PER_FRAME = sf::seconds(1.0 / 60.0);
 public:
     Game();
-    ~Game();
+    ~Game() = default;
 
     void run();
 };

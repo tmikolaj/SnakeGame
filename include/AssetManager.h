@@ -10,8 +10,8 @@ namespace Engine
     class AssetManager
     {
     public:
-        AssetManager();
-        ~AssetManager();
+        AssetManager() = default;
+        ~AssetManager() = default;
 
         void addFont(int id, const std::string& filePath);
         const sf::Font& getFont(int id) const;

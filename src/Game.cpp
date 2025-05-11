@@ -5,11 +5,6 @@ Game::Game() : context(std::make_shared<Context>()) {
     context->window->create(sf::VideoMode(640,360), "sfml snake game", sf::Style::Close);
     context->states->add(std::make_unique<MainMenu>(context));
 }
-
-Game::~Game() {
-
-}
-
 void Game::run() {
     sf::Clock clock;
     sf::Time timeSinceLastFrame = sf::Time::Zero;

@@ -11,7 +11,7 @@ private:
     sf::Text title;
 public:
     Pause(std::shared_ptr<Context>& context);
-    ~Pause();
+    ~Pause() = default;
 
     void init() override;
     void processInput() override;

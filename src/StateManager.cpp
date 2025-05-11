@@ -3,9 +3,6 @@
 Engine::StateManager::StateManager() : m_add(false), m_replace(false), m_remove(false) {
 
 }
-Engine::StateManager::~StateManager() {
-
-}
 void Engine::StateManager::add(std::unique_ptr<Engine::State> toAdd, bool replace) {
     m_add = true;
     newState = std::move(toAdd);

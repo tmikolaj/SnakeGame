@@ -3,7 +3,7 @@
 #include <string>
 #include <iostream>
 #include "../include/EndScreen.h"
-#include "../include/GamePlay.h""
+#include "../include/GamePlay.h"
 
 EndScreen::EndScreen(std::shared_ptr<Context>& context, std::string title, std::string message, int score) : context(context), isRetryButtonSelected(true), isRetryButtonPressed(false), isExitButtonSelected(false), isExitButtonPressed(false), m_title(title), m_message(message), m_score(score) {
     std::ifstream file("highscore.txt");
@@ -22,9 +22,6 @@ EndScreen::EndScreen(std::shared_ptr<Context>& context, std::string title, std::
             m_highScore = 0;
         }
     }
-
-}
-EndScreen::~EndScreen() {
 
 }
 void EndScreen::init() {

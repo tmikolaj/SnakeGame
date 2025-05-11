@@ -1,12 +1,6 @@
 #include <iostream>
 #include "../include/AssetManager.h"
 
-Engine::AssetManager::AssetManager() {
-
-}
-Engine::AssetManager::~AssetManager() {
-
-}
 void Engine::AssetManager::addFont(int id, const std::string &filePath) {
     auto font = std::make_unique<sf::Font>();
 
