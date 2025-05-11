@@ -20,14 +20,22 @@ A classic Snake game built using the SFML in C++.
 
 ---
 
-## ⚙️ Technologies
+### ⚙️ Technologies
 
 - **C++**
 - **SFML** (Graphics, Window, Events)
 
 ---
 
-## 🚀 How to Run
+### 📦 Prerequisites
+
+The following should be installed:
+
+ - git
+ - cmake
+ - g++
+
+### 🚀 How to Run
 
 1. Install SFML library
 2. Clone the repository
@@ -36,7 +44,7 @@ A classic Snake game built using the SFML in C++.
 
 ---
 
-## 💬 To Do (Soon)
+### 💬 To Do (Soon)
 
 - High score saving
 
